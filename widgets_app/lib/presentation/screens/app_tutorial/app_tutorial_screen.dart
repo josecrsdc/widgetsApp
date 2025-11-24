@@ -1,10 +1,61 @@
 import 'package:flutter/material.dart';
 
-class AppTutorialScreen extends StatelessWidget {
+class SlideInfo {
+  final String title;
+  final String caption;
+  final String imageUrl;
 
+  SlideInfo(this.title, this.caption, this.imageUrl);
+}
+
+final slides = <SlideInfo>[
+  SlideInfo('Busca la comida', 'Est deserunt duis sunt aute ut. Eu elit irure occaecat qui cupidatat culpa. Ad nisi consectetur cillum laboris enim veniam commodo. Nostrud cillum magna et ipsum aliqua cupidatat aliquip Lorem. Quis aute magna anim excepteur voluptate labore occaecat elit pariatur labore ad ut. Irure est tempor nisi aliqua voluptate laborum id nostrud ipsum.', 'assets/image/1.png'),
+  SlideInfo('Entrega rápida', 'Magna non labore aliqua duis. Deserunt ea dolor sunt commodo laborum officia. Ad nulla nisi eiusmod in mollit officia sit cupidatat. Voluptate nostrud dolore dolore quis ad aliqua et non commodo excepteur ut mollit anim sunt. Eu commodo sint minim amet consequat amet eiusmod non laborum nulla et.', 'assets/image/2.png'),
+  SlideInfo('Disfruta la comida', 'Qui adipisicing tempor ex non excepteur quis nostrud do proident quis. Commodo proident in mollit eu. Nostrud incididunt anim aute ullamco aliqua aliqua.', 'assets/image/3.png'),
+];
+
+class AppTutorialScreen extends StatelessWidget {
   static const String name = 'tutorial_screen';
 
   const AppTutorialScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return Scaffold(
+
+      body: PageView(
+        physics: const BouncingScrollPhysics(),
+        children: slides.map(
+          (slidesData) => _Slide(
+            title: slidesData.title, 
+            caption: slidesData.caption, 
+            imageUrl: slidesData.imageUrl
+          )
+        ).toList()
+      )
+    );
+
+  }
+
+
+
+
+}
+
+
+class _Slide extends StatelessWidget {
+
+  final String title;
+  final String caption;
+  final String imageUrl;
+
+  const _Slide({
+    required this.title,
+    required this.caption,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
